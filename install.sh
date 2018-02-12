@@ -35,7 +35,7 @@ output ""
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
     
     clear 
-    output "If you found this helpful, please donate to BTC Donation: 1HUruZMcSben39E27cyLwsTrk6bbWZs3po"
+    output "If you found this helpful, please donate to BTC Donation: 1Aist4agCEd818WMg7HedDgq3shBNsJhV8"
     output ""
     output "Updating system and installing required packages."
     output ""
@@ -92,7 +92,8 @@ default         0;
     sudo aptitude -y install git
     sudo aptitude -y install pwgen -y
     clear
-    
+    #start mariadb if not already started
+    sudo /etc/init.d/mysql start
     #Generating Random Passwords
     password=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     password2=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
@@ -485,7 +486,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
 
     output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
     output ""
-    output "BTC Donation: 1HUruZMcSben39E27cyLwsTrk6bbWZs3po"
+    output "BTC Donation: 1Aist4agCEd818WMg7HedDgq3shBNsJhV8"
     output ""
     
     output "Peforming the SQL import"
@@ -508,6 +509,11 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
      sudo mysql --defaults-group-suffix=host1 --force < 2017-05-accounts_case_swaptime.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2017-06-payouts_coinid_memo.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2017-09-notifications.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-10-bookmarks.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
+
      
     clear
     output "Generating a basic serverconfig.php"
@@ -537,7 +543,7 @@ define('"'"'YIIMP_PUBLIC_EXPLORER'"'"', true);
 define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', false);
 define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
-define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1HUruZMcSben39E27cyLwsTrk6bbWZs3po'"'"');
+define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1Aist4agCEd818WMg7HedDgq3shBNsJhV8'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${server_name}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
 define('"'"'YAAMP_SITE_NAME'"'"', '"'"'TheCryptoPool'"'"');
@@ -624,4 +630,4 @@ output "Please make sure to change your wallet addresses in the /var/web/serverc
 output ""
 output "Please make sure to add your public and private keys."
 output ""
-output "If you found this script helpful please consider donating some BTC Donation: 1HUruZMcSben39E27cyLwsTrk6bbWZs3po "
+output "If you found this script helpful please consider donating some BTC Donation: 1Aist4agCEd818WMg7HedDgq3shBNsJhV8"
