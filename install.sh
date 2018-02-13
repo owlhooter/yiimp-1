@@ -175,7 +175,7 @@ default         0;
     #Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     cd ~
-    git clone https://github.com/tpruvot/yiimp.git
+    git clone https://github.com/owlhooter/yiimp.git
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     sudo make
@@ -513,7 +513,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
      sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-
+     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-13-price_btc.sql
      
     clear
     output "Generating a basic serverconfig.php"
